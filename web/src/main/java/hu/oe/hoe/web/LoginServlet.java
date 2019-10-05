@@ -1,11 +1,10 @@
 package hu.oe.hoe.web;
 
 import hu.oe.hoe.adatok.LoginException;
-import hu.oe.hoe.adatok.RegistrationException;
 import hu.oe.hoe.adatok.SpeciesRepository;
 import hu.oe.hoe.adatok.UserRepository;
 import java.io.IOException;
-import java.io.PrintWriter;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,9 +15,15 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author javaee
  */
-@WebServlet(name = "RegistrationServlet", urlPatterns = {"/login"})
+@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
 public class LoginServlet extends HttpServlet {
     
+    @Inject
+    UserRepository userRepository;
+    
+    @Inject
+    SpeciesRepository speciesRepository;
+       
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,8 +37,8 @@ public class LoginServlet extends HttpServlet {
         String password =request.getParameter("password");
        
         try{
-            request.getSession().setAttribute("user", UserRepository.instance.login(name, password));
-            request.setAttribute("species", SpeciesRepository.instance.getSpecies());
+            request.getSession().setAttribute("user", userRepository.login(name, password));
+            request.setAttribute("species", speciesRepository.getSpecies());
             getServletContext().getRequestDispatcher("/hero.jsp").include(request, response);
         }
         catch(LoginException e){response.getWriter().print("nem jó bejelenetkezés ");}

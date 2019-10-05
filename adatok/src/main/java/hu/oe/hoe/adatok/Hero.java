@@ -10,6 +10,7 @@ import java.util.List;
 public class Hero {
     private String name, description;
     private List<Hybrid> hybrid = new ArrayList<>();
+    private User user;
 
 
     public Hero(String name, String description) {
@@ -27,6 +28,14 @@ public class Hero {
 
     public void setHybrid(List<Hybrid> hybrid) {
         this.hybrid = hybrid;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
      

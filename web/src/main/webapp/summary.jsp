@@ -8,5 +8,12 @@
     </head>
     <body>
         <h1>Heroes and empires</h1>
+        
+        <h2>Hősök</h2>
+        <input type="submit" value="Új hős" >
+        
+        <h2>Birodalmak</h2>
+        <input type="submit" value="Új birodalom" >
+
     </body>
 </html>

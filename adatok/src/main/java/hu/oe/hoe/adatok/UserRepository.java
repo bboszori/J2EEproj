@@ -3,19 +3,12 @@ package hu.oe.hoe.adatok;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author javaee
- */
+
+
 public class UserRepository {
 
-    public static final UserRepository  instance = new UserRepository();
-    
     private List<User> users = new ArrayList<>();
 
-    public UserRepository() {
-        users.add(new User("a", "a", false));
-    }
 
     
     public void registration(String pName, String pPassword) throws RegistrationException{

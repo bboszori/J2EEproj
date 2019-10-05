@@ -4,6 +4,7 @@ import hu.oe.hoe.adatok.RegistrationException;
 import hu.oe.hoe.adatok.UserRepository;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,9 +15,11 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author javaee
  */
-@WebServlet(name = "RegistrationServlet", urlPatterns = {"/reg"})
+//@WebServlet(name = "RegistrationServlet", urlPatterns = {"/reg"})
 public class RegistrationServlet extends HttpServlet {
     
+    @Inject
+    UserRepository userRepository;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,7 +32,7 @@ public class RegistrationServlet extends HttpServlet {
         String name = request.getParameter("name");
         String password =request.getParameter("password");
        
-        try{UserRepository.instance.registration(name, password);}
+        try{userRepository.registration(name, password);}
         catch(RegistrationException e){response.getWriter().print("nem sikerült");}
     }
 
