@@ -1,10 +1,12 @@
 package hu.oe.hoe.web;
 
-import hu.oe.hoe.adatok.LoginException;
+import hu.oe.hoe.adatok.EmpireRepository;
+import hu.oe.hoe.adatok.HeroesRepository;
 import hu.oe.hoe.adatok.SpeciesRepository;
 import hu.oe.hoe.adatok.UserRepository;
 import java.io.IOException;
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,14 +17,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author javaee
  */
-@WebServlet(name = "LoginServlet", urlPatterns = {"/login"})
-public class LoginServlet extends HttpServlet {
+@WebServlet(name = "SummaryServlet", urlPatterns = {"/summary"})
+public class SummaryServlet extends HttpServlet {
     
     @Inject
     UserRepository userRepository;
     
     @Inject
     SpeciesRepository speciesRepository;
+    
+    @Inject
+    HeroesRepository heroesRepository;
+    
+    @Inject
+    EmpireRepository empiresRepository;
        
     
     @Override
@@ -33,15 +41,23 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String password =request.getParameter("password");
-       
-        try{
-            request.getSession().setAttribute("user", userRepository.login(name, password));
-            request.setAttribute("species", speciesRepository.getSpecies());
-            getServletContext().getRequestDispatcher("/summary.jsp").include(request, response);
-        }
-        catch(LoginException e){response.getWriter().print("nem jó bejelenetkezés ");}
+            
+            String button_param = request.getParameter("button");
+            RequestDispatcher rd = null;
+
+           
+            request.setAttribute("heroes", heroesRepository.getHeroes());
+            request.setAttribute("heroes", empiresRepository.getEmpires());
+            if (button_param == "Uj hos letrehozasa")
+            {
+                rd = request.getRequestDispatcher("/newhero.jsp");
+            }
+            else
+            {
+                rd = request.getRequestDispatcher("/newempire.jsp");
+            }
+            rd.forward(request, response);
+
     }
 
     /**

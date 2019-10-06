@@ -1,5 +1,6 @@
 package hu.oe.hoe.web;
 
+import hu.oe.hoe.adatok.EmpireRepository;
 import hu.oe.hoe.adatok.HeroesRepository;
 import hu.oe.hoe.adatok.Species;
 import hu.oe.hoe.adatok.SpeciesRepository;
@@ -42,6 +43,13 @@ public class ApplicationConfiguration {
         HeroesRepository hr = new HeroesRepository();
             
         return hr;
+    }
+    
+    @Produces
+    public EmpireRepository createEmpireRepository(){
+        EmpireRepository er = new EmpireRepository();
+            
+        return er;
     }
     
 }

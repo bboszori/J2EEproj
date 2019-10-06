@@ -1,19 +1,19 @@
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-    </head>
-    <body>
-        <h1>Heroes and empires</h1>
-        
-        <h2>Hősök</h2>
-        <input type="submit" value="Új hős" >
-        
-        <h2>Birodalmak</h2>
-        <input type="submit" value="Új birodalom" >
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<form method="post" action="newhero">
+        Hosok:<br>
+        <input type="submit" value="Uj hos letrehozasa" name ="button"><br>
+        <c:forEach var="hero" items="${heroes}">
+            ${hero.name} <br>
+        </c:forEach>      
+                
+</form>
 
-    </body>
-</html>
+<form method="post" action="newempire">
+        Birodalmak:<br>
+        <input type="submit" value="Uj birodalom letrehozasa" name ="button"><br>
+        <c:forEach var="emp" items="${empires}">
+            ${emp.name} <br>
+        </c:forEach>
+</form>
+
