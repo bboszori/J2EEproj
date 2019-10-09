@@ -14,9 +14,10 @@ public class Empire {
     private final AssetRepository assetRepo = new AssetRepository();
     private final PeopleRepository peopleRepo = new PeopleRepository();
     
+    //constructor
     public Empire(String name) {
-        this.name = name;
-       
+        this.name = "teszt";
+        this.name = name;        
     }
 
     public String getName() {
