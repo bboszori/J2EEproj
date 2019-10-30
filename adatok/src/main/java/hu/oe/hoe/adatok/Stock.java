@@ -1,6 +1,28 @@
 package hu.oe.hoe.adatok;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+@Entity
+@Table(name="stock")
 public class Stock {
+    
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Id
+    private long ID;
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
+    }
+    
     private Asset asset;
     private int count;
 

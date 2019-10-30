@@ -5,6 +5,7 @@ import hu.oe.hoe.adatok.HeroesRepository;
 import hu.oe.hoe.adatok.SpeciesRepository;
 import hu.oe.hoe.adatok.UserRepository;
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -21,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class SummaryServlet extends HttpServlet {
     
     @Inject
-    UserRepository userRepository;
+    UserService userservice;
     
     @Inject
     SpeciesRepository speciesRepository;
@@ -29,8 +30,8 @@ public class SummaryServlet extends HttpServlet {
     @Inject
     HeroesRepository heroesRepository;
     
-    @Inject
-    EmpireRepository empiresRepository;
+    @EJB
+    EmpireService empireservice;
        
     
     @Override
@@ -47,7 +48,7 @@ public class SummaryServlet extends HttpServlet {
 
            
             request.setAttribute("heroes", heroesRepository.getHeroes());
-            request.setAttribute("heroes", empiresRepository.getEmpires());
+            //request.setAttribute("heroes", empireservice.getEmpires());
             if (button_param == "Uj hos letrehozasa")
             {
                 rd = request.getRequestDispatcher("/newhero.jsp");

@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RegistrationServlet extends HttpServlet {
     
     @Inject
-    UserRepository userRepository;
+    UserService userservice;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -32,7 +32,7 @@ public class RegistrationServlet extends HttpServlet {
         String name = request.getParameter("name");
         String password =request.getParameter("password");
        
-        try{userRepository.registration(name, password);}
+        try{userservice.registration(name, password);}
         catch(RegistrationException e){response.getWriter().print("nem sikerült");}
     }
 

@@ -9,6 +9,7 @@ import hu.oe.hoe.adatok.Population;
 import hu.oe.hoe.adatok.Stock;
 import hu.oe.hoe.adatok.User;
 import java.io.IOException;
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,6 +21,9 @@ import javax.servlet.http.HttpServletResponse;
 public class EmpireServlet extends HttpServlet {
     @Inject
     AssetRepository assetrepository;
+    
+    @EJB
+    EmpireService empireservice;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -36,14 +40,12 @@ public class EmpireServlet extends HttpServlet {
             empire.getStocks().add(ns);
            
         }
-        for(People ppl: PeopleRepository.instance.getPeople()){
-            Population np = new Population(ppl, Byte.parseByte(request.getParameter(ppl.getName())));
-            empire.getPopulations().add(np);
-           
-        }
+        
+        
         
         User sess = ((User)request.getSession().getAttribute("user"));
-        sess.getEmpire().add(empire);
+        empire.setUser(sess);
+        empireservice.add(empire);
         response.getWriter().print("-------");
         
         

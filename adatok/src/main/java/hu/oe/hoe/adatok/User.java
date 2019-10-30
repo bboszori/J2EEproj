@@ -2,25 +2,45 @@ package hu.oe.hoe.adatok;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
-/**
- *
- * @author javaee
- */
+@Entity
+@Table(name="user")
 public class User {
+    
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Id
+    private long ID;
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
+    }
     private String name, password;
     private boolean admin;
     private List<Hero> hero = new ArrayList<>();
-    private List<Empire> empire = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "user")
+    private List<Empire> empire;
     
 
     public User(String name, String password, boolean admin) {
+        this.empire = new ArrayList<>();
         this.name = name;
         this.password = password;
         this.admin = admin;
     }
 
     public User() {
+        this.empire = new ArrayList<>();
     }
 
     public List<Hero> getHero() {

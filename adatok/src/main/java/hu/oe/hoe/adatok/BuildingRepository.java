@@ -1,3 +1,4 @@
+
 package hu.oe.hoe.adatok;
 
 import java.util.ArrayList;
@@ -8,27 +9,26 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-public class AssetRepository {
-    //public static final AssetRepository  instance = new AssetRepository();
-    
+
+public class BuildingRepository {
     private EntityManager em = Persistence.createEntityManagerFactory("HeroPU").createEntityManager();
-    private List<Asset> assets = new ArrayList<>();
+    private List<Building> buildings = new ArrayList<>();
 
-    public AssetRepository() {
+    public BuildingRepository() {
     }
 
-    public List<Asset> getAssets() {
-        return em.createQuery("SELECT s FROM asset s", Asset.class).getResultList();
+    public List<Building> getbuildings() {
+        return em.createQuery("SELECT s FROM building s", Building.class).getResultList();
     }
     
-    public void add(Asset value){
+    public void add(Building value){
         em.getTransaction().begin();
         em.persist(value);
         em.getTransaction().commit();
     
     }
     
-    public User getAssetByID(long pID){
+    public User getBuildingByID(long pID){
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery(User.class);
         Root root = cq.from(User.class);
@@ -36,7 +36,7 @@ public class AssetRepository {
         return (User)em.createQuery(cq).getSingleResult();
     }
     
-    public List<Empire> getAssetByName(String pName){
+    public List<Empire> getBuildingByName(String pName){
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery cq = cb.createQuery(User.class);
         Root root = cq.from(User.class);

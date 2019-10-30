@@ -6,6 +6,7 @@
     <class>hu.oe.hoe.adatok.Building</class>
     <class>hu.oe.hoe.adatok.Empire</class>
     <class>hu.oe.hoe.adatok.Stock</class>
+    <class>hu.oe.hoe.adatok.User</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>

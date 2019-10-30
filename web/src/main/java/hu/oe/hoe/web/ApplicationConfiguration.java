@@ -5,6 +5,7 @@ import hu.oe.hoe.adatok.EmpireRepository;
 import hu.oe.hoe.adatok.HeroesRepository;
 import hu.oe.hoe.adatok.Species;
 import hu.oe.hoe.adatok.SpeciesRepository;
+import hu.oe.hoe.adatok.User;
 import hu.oe.hoe.adatok.UserRepository;
 import javax.enterprise.context.ApplicationScoped;
 import javax.enterprise.inject.Produces;
@@ -18,8 +19,8 @@ public class ApplicationConfiguration {
         UserRepository ur = new UserRepository();
             
         try{
-            ur.registration("a", "a");
-            ur.registration("b", "n");
+            ur.add(new User("a", "a", false));
+            ur.add(new User("b", "n", false));
         }
         catch(Exception e){e.printStackTrace();}
         

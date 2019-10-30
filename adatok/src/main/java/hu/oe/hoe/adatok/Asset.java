@@ -9,8 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "hero")
-public class Asset implements Serializable {
+@Table(name="asset")
+public class Asset {
     private String name, description;
     
     @GeneratedValue(strategy= GenerationType.AUTO)

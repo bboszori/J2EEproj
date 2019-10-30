@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
     
     @Inject
-    UserRepository userRepository;
+    UserService userservice;
     
     @Inject
     SpeciesRepository speciesRepository;
@@ -37,7 +37,7 @@ public class LoginServlet extends HttpServlet {
         String password =request.getParameter("password");
        
         try{
-            request.getSession().setAttribute("user", userRepository.login(name, password));
+            request.getSession().setAttribute("user", userservice.login(name, password));
             request.setAttribute("species", speciesRepository.getSpecies());
             getServletContext().getRequestDispatcher("/summary.jsp").include(request, response);
         }

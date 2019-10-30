@@ -2,22 +2,49 @@ package hu.oe.hoe.adatok;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
-
+@Entity
+@Table(name="empire")
 public class Empire {
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Id
+    private long ID;
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
+    }
+    
     private String name;
     private List<Stock> stocks = new ArrayList<>();
-    private List<Population> populations = new ArrayList<>();
-    private User user;
+    private List<Building> buildings = new ArrayList<>();
     
-    private final AssetRepository assetRepo = new AssetRepository();
-    private final PeopleRepository peopleRepo = new PeopleRepository();
+    @ManyToOne
+    private User user;
     
     public Empire(String name) {
         this.name = name;
        
     }
+
+    public List<Building> getBuildings() {
+        return buildings;
+    }
+
+    public void setBuildings(List<Building> buildings) {
+        this.buildings = buildings;
+    }
+    
+    
 
     public String getName() {
         return name;
@@ -44,16 +71,7 @@ public class Empire {
     public void setStocks(List<Stock> stocks) {
         this.stocks = stocks;
     }
-
-    public List<Population> getPopulations() {
-        return populations;
-    }
-
-    public void setPopulations(List<Population> populations) {
-        this.populations = populations;
-    }
-    
-    
+ 
 
 
 }
