@@ -31,9 +31,10 @@ public class Empire {
     @ManyToOne
     private User user;
     
+    //constructor
     public Empire(String name) {
-        this.name = name;
-       
+        this.name = "teszt";
+        this.name = name;        
     }
 
     public List<Building> getBuildings() {
