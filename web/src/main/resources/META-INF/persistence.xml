@@ -3,6 +3,9 @@
   <persistence-unit name="HeroPU" transaction-type="JTA">
     <jta-data-source>java:app/hero</jta-data-source>
     <class>hu.oe.hoe.adatok.Asset</class>
+    <class>hu.oe.hoe.adatok.Building</class>
+    <class>hu.oe.hoe.adatok.Empire</class>
+    <class>hu.oe.hoe.adatok.Stock</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
     <shared-cache-mode>NONE</shared-cache-mode>
     <validation-mode>NONE</validation-mode>
