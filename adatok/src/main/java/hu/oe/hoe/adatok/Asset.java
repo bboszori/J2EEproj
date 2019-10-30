@@ -1,13 +1,37 @@
 
 package hu.oe.hoe.adatok;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
-public class Asset {
+@Entity
+@Table(name = "hero")
+public class Asset implements Serializable {
     private String name, description;
+    
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    @Id
+    private long ID;
+
+    public long getID() {
+        return ID;
+    }
+
+    public void setID(long ID) {
+        this.ID = ID;
+    }
 
     public Asset(String name, String description) {
         this.name = name;
         this.description = description;
+    }
+    
+    public Asset() {
+
     }
 
     public String getName() {

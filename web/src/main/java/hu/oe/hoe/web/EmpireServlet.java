@@ -9,6 +9,7 @@ import hu.oe.hoe.adatok.Population;
 import hu.oe.hoe.adatok.Stock;
 import hu.oe.hoe.adatok.User;
 import java.io.IOException;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,7 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "EmpireServlet", urlPatterns = {"/newempire"})
 public class EmpireServlet extends HttpServlet {
-    
+    @Inject
+    AssetRepository assetrepository;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -29,7 +31,7 @@ public class EmpireServlet extends HttpServlet {
             throws ServletException, IOException {
        
         Empire empire = new Empire(request.getParameter("name"));
-        for(Asset asset: AssetRepository.instance.getAssets()){
+        for(Asset asset: assetrepository.getAssets()){
             Stock ns = new Stock(asset, Byte.parseByte(request.getParameter(asset.getName())));
             empire.getStocks().add(ns);
            

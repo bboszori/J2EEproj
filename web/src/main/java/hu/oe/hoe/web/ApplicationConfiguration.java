@@ -1,5 +1,6 @@
 package hu.oe.hoe.web;
 
+import hu.oe.hoe.adatok.AssetRepository;
 import hu.oe.hoe.adatok.EmpireRepository;
 import hu.oe.hoe.adatok.HeroesRepository;
 import hu.oe.hoe.adatok.Species;
@@ -50,6 +51,13 @@ public class ApplicationConfiguration {
         EmpireRepository er = new EmpireRepository();
             
         return er;
+    }
+    
+    @Produces
+    public AssetRepository createAssetRepository(){
+        AssetRepository ar = new AssetRepository();
+            
+        return ar;
     }
     
 }
