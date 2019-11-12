@@ -28,6 +28,9 @@ public class Building {
         this.name = name;
         this.description = description;
     }
+    
+    public Building() {
+    }
 
     public String getName() {
         return name;

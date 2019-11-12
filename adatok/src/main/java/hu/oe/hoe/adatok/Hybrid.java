@@ -1,12 +1,30 @@
 package hu.oe.hoe.adatok;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 /**
  *
  * @author javaee
  */
+@Entity
+@Table(name="hybrid")
 public class Hybrid {
-    private Species species;
-    private byte percent;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id
+    private long id;
+    
+    @ManyToOne
+    Species species;
+    
+    @ManyToOne
+    Hero hero;
+    
+    byte percent;
 
     public Hybrid() {
     }

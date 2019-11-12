@@ -15,6 +15,10 @@ public class Stock {
     @Id
     private long ID;
 
+    public Stock() {
+    }
+    
+
     public long getID() {
         return ID;
     }

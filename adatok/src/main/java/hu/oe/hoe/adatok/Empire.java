@@ -25,6 +25,7 @@ public class Empire {
     }
     
     private String name;
+    private String descripton;
     private List<Stock> stocks = new ArrayList<>();
     private List<Building> buildings = new ArrayList<>();
     
@@ -36,6 +37,19 @@ public class Empire {
         this.name = "teszt";
         this.name = name;        
     }
+    
+    public Empire() {      
+    }
+
+    public String getDescripton() {
+        return descripton;
+    }
+
+    public void setDescripton(String descripton) {
+        this.descripton = descripton;
+    }
+    
+    
 
     public List<Building> getBuildings() {
         return buildings;

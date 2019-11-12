@@ -2,7 +2,7 @@ package hu.oe.hoe.web;
 
 import hu.oe.hoe.adatok.LoginException;
 import hu.oe.hoe.adatok.SpeciesRepository;
-import hu.oe.hoe.adatok.UserRepository;
+import hu.oe.hoe.adatok.User;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
@@ -22,6 +22,9 @@ public class LoginServlet extends HttpServlet {
     UserService userservice;
     
     @Inject
+    EmpireService empService;
+    
+    @Inject
     SpeciesRepository speciesRepository;
        
     
@@ -37,7 +40,10 @@ public class LoginServlet extends HttpServlet {
         String password =request.getParameter("password");
        
         try{
-            request.getSession().setAttribute("user", userservice.login(name, password));
+            User user = userservice.login(name, password);
+            request.getSession().setAttribute("user", user);
+            request.setAttribute("heroes", user.getHero());
+            request.setAttribute("empires", user.getEmpire());
             request.setAttribute("species", speciesRepository.getSpecies());
             getServletContext().getRequestDispatcher("/summary.jsp").include(request, response);
         }

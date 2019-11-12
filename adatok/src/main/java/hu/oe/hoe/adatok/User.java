@@ -26,37 +26,39 @@ public class User {
     }
     private String name, password;
     private boolean admin;
-    private List<Hero> hero = new ArrayList<>();
     
     @OneToMany(mappedBy = "user")
-    private List<Empire> empire;
+    private List<Hero> heroes = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Empire> empires = new ArrayList<>();
     
 
     public User(String name, String password, boolean admin) {
-        this.empire = new ArrayList<>();
+        this.empires = new ArrayList<>();
         this.name = name;
         this.password = password;
         this.admin = admin;
     }
 
     public User() {
-        this.empire = new ArrayList<>();
+        this.empires = new ArrayList<>();
     }
 
     public List<Hero> getHero() {
-        return hero;
+        return heroes;
     }
 
     public void setHero(List<Hero> hero) {
-        this.hero = hero;
+        this.heroes = hero;
     }
 
     public List<Empire> getEmpire() {
-        return empire;
+        return empires;
     }
 
     public void setEmpire(List<Empire> empire) {
-        this.empire = empire;
+        this.empires = empire;
     }
 
      

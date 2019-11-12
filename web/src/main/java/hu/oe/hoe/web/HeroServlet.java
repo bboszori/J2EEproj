@@ -34,15 +34,16 @@ public class HeroServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-        Hero hero = new Hero(request.getParameter("name"),request.getParameter("desc"));
+        
+       User sess = ((User)request.getSession().getAttribute("user"));
+        Hero hero = new Hero(request.getParameter("name"),request.getParameter("desc"), sess);
         for(Species sp: speciesRepository.getSpecies()){
             Hybrid nh = new Hybrid(sp, Byte.parseByte(request.getParameter(sp.getName())));
             hero.getHybrid().add(nh);
            
         }
         
-        User sess = ((User)request.getSession().getAttribute("user"));
+        
         hero.setUser(sess);
         heroesRepository.add(hero);
         

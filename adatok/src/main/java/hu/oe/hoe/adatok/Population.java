@@ -8,6 +8,8 @@ public class Population {
         this.people = people;
         this.count = count;
     }
+    public Population() {
+    }
 
     public People getPeople() {
         return people;

@@ -7,6 +7,9 @@ public class People {
         this.name = name;
         this.description = description;
     }
+    
+    public People() {
+    }
 
     public String getName() {
         return name;
